@@ -3,6 +3,7 @@ import time
 from Pages.Elenents.text_box import ElementsTextBox
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.radio_button import ElementsRadioButton
+from Pages.Elenents.web_tables import ElementsWebTables
 from Pages.Form.practice_form import PracticeFormMethods
 
 
@@ -16,7 +17,7 @@ def test_filling_elements_text_box(browser):
     page.text_box()
     page.data_validation()
 
-def test_filling_elements_check_box(browser):
+def test_filling_elements_check_box_and_validation_data(browser):
     """
     Заполняем форму Elements/Check Box и сверяем соответствие сохраненных на странице данных с введенными нами
     URL: https://demoqa.com/checkbox
@@ -25,7 +26,7 @@ def test_filling_elements_check_box(browser):
     page.check_box()
     page.data_validation()
 
-def test_filling_elements_radio_button(browser):
+def test_filling_elements_radio_button_and_validation_data(browser):
     """
     Заполняем форму Elements/Radio Button и сверяем соответствие сохраненных на странице данных с введенными нами
     URL: https://demoqa.com/radio-button
@@ -34,6 +35,16 @@ def test_filling_elements_radio_button(browser):
     page.radio_button()
     page.data_validation()
 
+def test_filling_elements_web_tables_and_validation_data(browser):
+    """
+    Заполняем форму Forms/Web Tables. Проверяем корректность введенных данных
+    :param browser:
+    :return:
+    """
+    page = ElementsWebTables(browser)
+    page.web_tables()
+
+    time.sleep(3)
 
 def test_filling_forms_practice_form_and_validation_data(browser):
     """
@@ -41,8 +52,8 @@ def test_filling_forms_practice_form_and_validation_data(browser):
     URL: https://demoqa.com/automation-practice-form
     """
     page = PracticeFormMethods(browser)
-    page.filling_full_form() # заполнение формы
-    page.data_validation() # сверка вводимых и сохраненных данных
+    page.filling_full_form()
+    page.data_validation()
 
 
 
