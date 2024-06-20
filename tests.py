@@ -4,6 +4,7 @@ from Pages.Elenents.text_box import ElementsTextBox
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.radio_button import ElementsRadioButton
 from Pages.Elenents.web_tables import ElementsWebTables
+from Pages.Elenents.buttons import Buttons
 from Pages.Form.practice_form import PracticeFormMethods
 
 
@@ -45,6 +46,16 @@ def test_filling_elements_web_tables_and_validation_data(browser):
     page.data_validation()
     page.clier_test_data()
 
+def test_buttons(browser):
+    """
+    Кликаем на Forms/Buttons. Проверяем нажатие на кнопки
+    URL = https://demoqa.com/buttons
+    """
+    page = Buttons(browser)
+    page.buttons()
+    page.data_validation()
+
+    time.sleep(3)
 
 def test_filling_forms_practice_form_and_validation_data(browser):
     """

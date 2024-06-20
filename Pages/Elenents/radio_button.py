@@ -16,4 +16,4 @@ class ElementsRadioButton(Methods):
     def data_validation(self):
         element = self.find_element(RadioButtonLocators.LOCATOR_RADIO_YES).text
 
-        assert element.split()[-1] == "Yes"
+        assert element.split()[-1] == "Yes", f"Ошибка: '{element.split()[-1]}' не совпадает с 'Yes'"

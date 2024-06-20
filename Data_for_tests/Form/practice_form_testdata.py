@@ -27,6 +27,17 @@ class PracticeFormLocators:
     LOCATOR_CITY_NAME = (By.XPATH, "//div[@id='city']//div[contains(text(), 'Jaipur')]")
     LOCATOR_BUTTON_SUBMIT = (By.ID, "submit")
 
+    LOCATOR_DATA_FULL_NAME_VALIDATION = (By.CSS_SELECTOR, "table tbody tr:nth-child(1) td:nth-child(2)")
+    LOCATOR_DATA_EMAIL_FIELD_VALIDATOIN = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(2) td:nth-child(2)")
+    LOCATOR_DATA_GENDER_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(3) td:nth-child(2)")
+    LOCATOR_DATA_MOBILE_NUMBER_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(4) td:nth-child(2)")
+    LOCATOR_DATA_DATE_OF_BIRTH_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(5) td:nth-child(2)")
+    LOCATOR_DATA_SUBJECTS_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(6) td:nth-child(2)")
+    LOCATOR_DATA_HOBBIES_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(7) td:nth-child(2)")
+    LOCATOR_DATA_PICTURE_FILENAME_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(8) td:nth-child(2)")
+    LOCATOR_DATA_CURRENT_ADDRESS_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(9) td:nth-child(2)")
+    LOCATOR_DATA_STATE_CITY_VALIDATION = (By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(10) td:nth-child(2)")
+
 class PracticeFormTestdata:
     """
     Класс содержит тестовые данные для конкретной тестируемой страницы

@@ -52,26 +52,35 @@ class PracticeFormMethods(Methods):
         self.find_element(PracticeFormLocators.LOCATOR_BUTTON_SUBMIT).click()
 
     def data_validation(self):
-        assert self.find_element((By.CSS_SELECTOR, "table tbody tr:nth-child(1) td:nth-child(2)"))\
-                   .text == PracticeFormTestdata.DATA_FULL_NAME
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(2) td:nth-child(2)")) \
-                    .text == PracticeFormTestdata.DATA_EMAIL_FIELD
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(3) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_GENDER
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(4) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_MOBILE_NUMBER
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(5) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_DATE_OF_BIRTH
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(6) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_SUBJECTS
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(7) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_HOBBIES
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(8) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_PICTURE_FILENAME
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(9) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_CURRENT_ADDRESS
-        assert self.find_element((By.CSS_SELECTOR, ".modal-body table tbody tr:nth-child(10) td:nth-child(2)")) \
-                   .text == PracticeFormTestdata.DATA_STATE_CITY
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_FULL_NAME_VALIDATION).text == \
+               PracticeFormTestdata.DATA_FULL_NAME, f"Ошибка: {PracticeFormTestdata.DATA_FULL_NAME} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_EMAIL_FIELD_VALIDATOIN).text == \
+               PracticeFormTestdata.DATA_EMAIL_FIELD, f"Ошибка: {PracticeFormTestdata.DATA_EMAIL_FIELD} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_GENDER_VALIDATION).text == \
+               PracticeFormTestdata.DATA_GENDER, f"Ошибка: {PracticeFormTestdata.DATA_GENDER} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_MOBILE_NUMBER_VALIDATION).text == \
+               PracticeFormTestdata.DATA_MOBILE_NUMBER, f"Ошибка: {PracticeFormTestdata.DATA_MOBILE_NUMBER} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_DATE_OF_BIRTH_VALIDATION).text == \
+               PracticeFormTestdata.DATA_DATE_OF_BIRTH, f"Ошибка: {PracticeFormTestdata.DATA_DATE_OF_BIRTH} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_SUBJECTS_VALIDATION).text == \
+               PracticeFormTestdata.DATA_SUBJECTS, f"Ошибка: {PracticeFormTestdata.DATA_SUBJECTS} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_HOBBIES_VALIDATION).text == \
+               PracticeFormTestdata.DATA_HOBBIES, f"Ошибка: {PracticeFormTestdata.DATA_HOBBIES} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_PICTURE_FILENAME_VALIDATION).text == \
+               PracticeFormTestdata.DATA_PICTURE_FILENAME, f"Ошибка: {PracticeFormTestdata.DATA_PICTURE_FILENAME} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_CURRENT_ADDRESS_VALIDATION).text == \
+               PracticeFormTestdata.DATA_CURRENT_ADDRESS, f"Ошибка: {PracticeFormTestdata.DATA_CURRENT_ADDRESS} не обнаружено"
+
+        assert self.find_element(PracticeFormLocators.LOCATOR_DATA_STATE_CITY_VALIDATION).text == \
+               PracticeFormTestdata.DATA_STATE_CITY, f"Ошибка: {PracticeFormTestdata.DATA_STATE_CITY} не обнаружено"
 
     # def filling_full_form_single_methods(self):
     #     self.text_box(PracticeFormLocators.LOCATOR_FIRST_NAME, PracticeFormTestdata.DATA_FIRST_NAME)

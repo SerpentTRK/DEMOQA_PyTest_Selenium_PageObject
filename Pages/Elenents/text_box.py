@@ -21,10 +21,18 @@ class ElementsTextBox(Methods):
 
 
     def data_validation(self):
-        assert self.find_element((By.ID, "name")).text.split(":")[-1] == TextBoxTestdata.DATA_FULL_NAME
-        assert self.find_element((By.ID, "email")).text.split(":")[-1] == TextBoxTestdata.DATA_EMAIL
-        assert self.find_element((By.CSS_SELECTOR, "#output #currentAddress")).text.split(":")[-1] == TextBoxTestdata.DATA_CURRENT_ADDRESS
-        assert self.find_element((By.CSS_SELECTOR, "#output #permanentAddress")).text.split(":")[-1] == TextBoxTestdata.DATA_PERMANENT_ADDRESS
+        assert self.find_element((By.ID, "name")).text.split(":")[-1] == TextBoxTestdata.DATA_FULL_NAME, \
+            f"Ошибка: {self.find_element((By.ID, 'name')).text.split(':')[-1]} не совпадает с {TextBoxTestdata.DATA_FULL_NAME}"
+
+        assert self.find_element((By.ID, "email")).text.split(":")[-1] == TextBoxTestdata.DATA_EMAIL, \
+            f"Ошибка: {self.find_element((By.ID, 'email')).text.split(':')[-1]} не совпадает с {TextBoxTestdata.DATA_EMAIL}"
+
+        assert self.find_element((By.CSS_SELECTOR, "#output #currentAddress")).text.split(":")[-1] == TextBoxTestdata.DATA_CURRENT_ADDRESS, \
+            f"Ошибка: {self.find_element((By.CSS_SELECTOR, '#output #currentAddress')).text.split(':')[-1]} не совпадает с {TextBoxTestdata.DATA_CURRENT_ADDRESS}"
+
+        assert self.find_element((By.CSS_SELECTOR, "#output #permanentAddress")).text.split(":")[-1] == TextBoxTestdata.DATA_PERMANENT_ADDRESS, \
+            f"Ошибка: {self.find_element((By.CSS_SELECTOR, '#output #permanentAddress')).text.split(':')[-1]} не совпадает с {TextBoxTestdata.DATA_PERMANENT_ADDRESS}"
+
 
 
 

@@ -30,11 +30,11 @@ class ElementsCheckBox(Methods):
         # Извлекаем строки, разделенные символом новой строки, за исключением первой строки
         result = res[0].split('\n')[1:]
 
-        assert CheckBoxTestdata.DATA_NOTES in result
-        assert CheckBoxTestdata.DATA_WORKSPACE in result
-        assert CheckBoxTestdata.DATA_REACT in result
-        assert CheckBoxTestdata.DATA_ANGULAR in result
-        assert CheckBoxTestdata.DATA_VEU in result
-        assert CheckBoxTestdata.DATA_GENERAL in result
+        assert CheckBoxTestdata.DATA_NOTES in result, f"Ошибка: '{CheckBoxTestdata.DATA_NOTES}' не выбрано"
+        assert CheckBoxTestdata.DATA_WORKSPACE in result,  f"Ошибка: '{CheckBoxTestdata.DATA_WORKSPACE}' не выбрано"
+        assert CheckBoxTestdata.DATA_REACT in result, f"Ошибка: '{CheckBoxTestdata.DATA_REACT}' не выбрано"
+        assert CheckBoxTestdata.DATA_ANGULAR in result, f"Ошибка: '{CheckBoxTestdata.DATA_ANGULAR}' не выбрано"
+        assert CheckBoxTestdata.DATA_VEU in result, f"Ошибка: '{CheckBoxTestdata.DATA_VEU}' не выбрано"
+        assert CheckBoxTestdata.DATA_GENERAL in result, f"Ошибка: '{CheckBoxTestdata.DATA_GENERAL}' не выбрано"
 
 
