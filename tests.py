@@ -37,14 +37,14 @@ def test_filling_elements_radio_button_and_validation_data(browser):
 
 def test_filling_elements_web_tables_and_validation_data(browser):
     """
-    Заполняем форму Forms/Web Tables. Проверяем корректность введенных данных
-    :param browser:
-    :return:
+    Заполняем форму Forms/Web Tables. Проверяем корректность введенных данных. Удаляем тестовые данные
+    URL = https://demoqa.com/webtables
     """
     page = ElementsWebTables(browser)
     page.web_tables()
+    page.data_validation()
+    page.clier_test_data()
 
-    time.sleep(3)
 
 def test_filling_forms_practice_form_and_validation_data(browser):
     """
