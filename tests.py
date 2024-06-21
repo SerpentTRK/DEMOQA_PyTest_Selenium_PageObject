@@ -1,12 +1,12 @@
 import time
 
-
 from Pages.Elenents.text_box import ElementsTextBox
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.radio_button import ElementsRadioButton
 from Pages.Elenents.web_tables import ElementsWebTables
 from Pages.Elenents.buttons import Buttons
 from Pages.Elenents.links import Links
+from Pages.Elenents.broken_links_and_images import BrokenLinksImages
 from Pages.Form.practice_form import PracticeFormMethods
 
 
@@ -63,10 +63,22 @@ def test_filling_elements_links(browser):
     """
     Кликаем на Forms/Links. 1) Переходим по ссылкам 2) Смотрим статус страниц, который нам возвращается
     URL = https://demoqa.com/links
+
+    Тест не обрывается, когда мы получаем статус страницы, отличный от 201, т.к. по смыслу этого тренажера это не требуется
     """
     page = Links(browser)
     page.following_links_will_open_new_tab()
     page.following_links_will_send_an_api_call()
+
+def test_filling_elements_broken_links_and_images(browser):
+    """
+    Битые ссылки и картинки
+    URL = https://demoqa.com/broken
+    """
+    page = BrokenLinksImages(browser)
+    page.image_validation()
+    page.links_validation()
+
 
 def test_filling_forms_practice_form_and_validation_data(browser):
     """
@@ -76,6 +88,45 @@ def test_filling_forms_practice_form_and_validation_data(browser):
     page = PracticeFormMethods(browser)
     page.filling_full_form()
     page.data_validation()
+
+
+def test_temp():
+    import requests
+
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+
+    # Замените путь к драйверу на путь к вашему драйверу
+    driver = webdriver.Chrome()
+    driver.get("https://demoqa.com/broken")
+
+    links = driver.find_elements(By.XPATH, "//a[contains(text(), 'Link')]")
+
+    for link in links:
+        href = link.get_attribute('href')
+        # print(href)
+        response = requests.head(href)
+        if response.status_code != range(200, 300):
+            print(href, response)
+
+    # # Проверка доступности каждой картинки
+    # for href in hrefs:
+    #     src = img.get_attribute('src')
+    #     response = requests.head(src)
+    #     if response.status_code != 200:
+    #         print(f"Изображение {src} является битым.")
+    #     else:
+    #         print(f"Изображение {src} доступно.")
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,39 +143,6 @@ def test_filling_forms_practice_form_and_validation_data(browser):
 #     page = PracticeFormMethods(browser)
 #     page.filling_full_form_single_methods()  # заполнение формы
 #     page.data_validation_single()    # сверка вводимых и сохраненных данных
-
-# def test_temp():
-#     from selenium import webdriver
-#
-#     # Замените путь к драйверу на путь к вашему драйверу
-#     driver = webdriver.Chrome()
-#     driver.get("https://demoqa.com/automation-practice-form")
-#
-#     search_text = "Василий"
-#     all_text = driver.find_element_by_tag_name('body').text
-#
-#     if search_text in all_text:
-#         print(f"Found the text: {search_text}")
-#     else:
-#         print(f"Text '{search_text}' not found")
-#
-#     driver.quit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # # не работает, т.к. тут не работает selene
 # def test_page_object():

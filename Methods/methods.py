@@ -1,5 +1,6 @@
 import os
 
+import requests
 from selenium.webdriver import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
@@ -43,6 +44,21 @@ class Methods():
         except TimeoutException:
             print(f"Элемент с локатором {locator} не был найден на странице {self.url} за {time} секунд")
             return None
+
+    def check_broken_images(self, image):
+        width = self.browser.execute_script("return arguments[0].naturalWidth", image)
+        height = self.browser.execute_script("return arguments[0].naturalHeight", image)
+
+        if width == 0 or height == 0:
+            return "broken image"
+        else:
+            return "valid image"
+
+    def check_links_status_code(self, link):
+        response = requests.head(link)
+        return response.status_code
+
+
 
 # class SingleMethods():
 #     """
