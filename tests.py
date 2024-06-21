@@ -1,10 +1,12 @@
 import time
 
+
 from Pages.Elenents.text_box import ElementsTextBox
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.radio_button import ElementsRadioButton
 from Pages.Elenents.web_tables import ElementsWebTables
 from Pages.Elenents.buttons import Buttons
+from Pages.Elenents.links import Links
 from Pages.Form.practice_form import PracticeFormMethods
 
 
@@ -46,7 +48,7 @@ def test_filling_elements_web_tables_and_validation_data(browser):
     page.data_validation()
     page.clier_test_data()
 
-def test_buttons(browser):
+def test_filling_elements_buttons(browser):
     """
     Кликаем на Forms/Buttons. Проверяем нажатие на кнопки
     URL = https://demoqa.com/buttons
@@ -56,6 +58,15 @@ def test_buttons(browser):
     page.data_validation()
 
     time.sleep(3)
+
+def test_filling_elements_links(browser):
+    """
+    Кликаем на Forms/Links. 1) Переходим по ссылкам 2) Смотрим статус страниц, который нам возвращается
+    URL = https://demoqa.com/links
+    """
+    page = Links(browser)
+    page.following_links_will_open_new_tab()
+    page.following_links_will_send_an_api_call()
 
 def test_filling_forms_practice_form_and_validation_data(browser):
     """
