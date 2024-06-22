@@ -12,7 +12,7 @@ class UploadAndDownload(Methods):
         # self.browser.get(self.url)  # его надо запускать только в теле уникальных методов, которые не описаны на странице methods.py
 
     def download_and_upload_file(self):
-        # self.find_element(UploadAndDownloadLocators.LOCATOR_DOWNLOAD_BUTTON).click()
+        self.find_element(UploadAndDownloadLocators.LOCATOR_DOWNLOAD_BUTTON).click()
 
         self.find_element(UploadAndDownloadLocators.LOCATOR_PICTURE).send_keys(UploadAndDownloadTestdata.file_path)
         time.sleep(3)

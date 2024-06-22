@@ -9,10 +9,12 @@ from Pages.Elenents.buttons import Buttons
 from Pages.Elenents.links import Links
 from Pages.Elenents.broken_links_and_images import BrokenLinksImages
 from Pages.Elenents.upload_and_download import UploadAndDownload
+from Pages.Elenents.dynamic_properties import DynamicProperties
+
 from Pages.Form.practice_form import PracticeFormMethods
 
 
-
+# Раздел "Elements"
 def test_filling_elements_text_box(browser):
     """
     Заполняем форму Elements/Text Box и сверяем соответствие сохраненных на странице данных с введенными нами
@@ -86,6 +88,13 @@ def test_upload_and_download(browser):
     page.download_and_upload_file()
     page.download_and_upload_validation()
 
+def test_dynamic_properties(browser):
+    page = DynamicProperties(browser)
+    page.push_dynamic_buttons()
+
+    time.sleep(3)
+
+# Раздел "Forms"
 def test_filling_forms_practice_form_and_validation_data(browser):
     """
     Заполняем форму Forms/Practice Form и сверяем соответствие сохраненных на странице данных с введенными нами
@@ -95,6 +104,9 @@ def test_filling_forms_practice_form_and_validation_data(browser):
     page.filling_full_form()
     page.data_validation()
 
+# Раздел "Alerts, Frame & Windows"
+
+# Черновик
 def test_temp():
     import requests
     import os
