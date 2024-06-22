@@ -39,6 +39,7 @@ class PracticeFormMethods(Methods):
         self.find_element(PracticeFormLocators.LOCATOR_HOBBIES).click()
         # Upload and Download
         self.find_element(PracticeFormLocators.LOCATOR_PICTURE).send_keys(PracticeFormTestdata.DATA_PICTURE)
+        # text box
         self.find_element(PracticeFormLocators.LOCATOR_CURRENT_ADDRESS).send_keys(PracticeFormTestdata.DATA_CURRENT_ADDRESS)
         # Скроллинг страницы
         self.scroll_down_page(200)

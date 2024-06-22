@@ -1,3 +1,4 @@
+
 import time
 
 from Pages.Elenents.text_box import ElementsTextBox
@@ -7,6 +8,7 @@ from Pages.Elenents.web_tables import ElementsWebTables
 from Pages.Elenents.buttons import Buttons
 from Pages.Elenents.links import Links
 from Pages.Elenents.broken_links_and_images import BrokenLinksImages
+from Pages.Elenents.upload_and_download import UploadAndDownload
 from Pages.Form.practice_form import PracticeFormMethods
 
 
@@ -79,6 +81,10 @@ def test_filling_elements_broken_links_and_images(browser):
     page.image_validation()
     page.links_validation()
 
+def test_upload_and_download(browser):
+    page = UploadAndDownload(browser)
+    page.download_and_upload_file()
+    page.download_and_upload_validation()
 
 def test_filling_forms_practice_form_and_validation_data(browser):
     """
@@ -89,34 +95,32 @@ def test_filling_forms_practice_form_and_validation_data(browser):
     page.filling_full_form()
     page.data_validation()
 
-
 def test_temp():
     import requests
+    import os
 
     from selenium import webdriver
     from selenium.webdriver.common.by import By
 
     # Замените путь к драйверу на путь к вашему драйверу
     driver = webdriver.Chrome()
-    driver.get("https://demoqa.com/broken")
+    driver.get("https://demoqa.com/upload-download")
 
-    links = driver.find_elements(By.XPATH, "//a[contains(text(), 'Link')]")
+    # Находим кнопку для загрузки файла и загружаем файл
+    upload_button = driver.find_element(By.CSS_SELECTOR, "#uploadFile")
 
-    for link in links:
-        href = link.get_attribute('href')
-        # print(href)
-        response = requests.head(href)
-        if response.status_code != range(200, 300):
-            print(href, response)
+    current_dir = os.getcwd()  # Получаем текущий рабочий каталог
+    file_path = os.path.join(current_dir, "resources", "1518.jpg")
 
-    # # Проверка доступности каждой картинки
-    # for href in hrefs:
-    #     src = img.get_attribute('src')
-    #     response = requests.head(src)
-    #     if response.status_code != 200:
-    #         print(f"Изображение {src} является битым.")
-    #     else:
-    #         print(f"Изображение {src} доступно.")
+    upload_button.send_keys(file_path)
+
+    # Подождем некоторое время после загрузки файла
+    time.sleep(5)
+
+    # Закрываем браузер
+    driver.quit()
+
+
 
 
 
