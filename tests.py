@@ -1,17 +1,23 @@
 
 import time
 
-from Pages.Elenents.text_box import ElementsTextBox
-from Pages.Elenents.check_box import ElementsCheckBox
-from Pages.Elenents.radio_button import ElementsRadioButton
-from Pages.Elenents.web_tables import ElementsWebTables
-from Pages.Elenents.buttons import Buttons
-from Pages.Elenents.links import Links
-from Pages.Elenents.broken_links_and_images import BrokenLinksImages
-from Pages.Elenents.upload_and_download import UploadAndDownload
-from Pages.Elenents.dynamic_properties import DynamicProperties
+from selenium.webdriver.support import wait
+
+from Pages.Alerts_Frame_Windows.alerts import Alerts
+from Pages.Alerts_Frame_Windows.browser_windows import BrowserWindows
 
 from Pages.Form.practice_form import PracticeFormMethods
+
+from Pages.Elenents.dynamic_properties import DynamicProperties
+from Pages.Elenents.upload_and_download import UploadAndDownload
+from Pages.Elenents.broken_links_and_images import BrokenLinksImages
+from Pages.Elenents.links import Links
+from Pages.Elenents.buttons import Buttons
+from Pages.Elenents.web_tables import ElementsWebTables
+from Pages.Elenents.radio_button import ElementsRadioButton
+from Pages.Elenents.check_box import ElementsCheckBox
+from Pages.Elenents.text_box import ElementsTextBox
+
 
 
 # Раздел "Elements"
@@ -84,15 +90,21 @@ def test_filling_elements_broken_links_and_images(browser):
     page.links_validation()
 
 def test_upload_and_download(browser):
+    """
+    Получение и отправка файлов.
+    URL = https://demoqa.com/upload-download
+    """
     page = UploadAndDownload(browser)
     page.download_and_upload_file()
     page.download_and_upload_validation()
 
 def test_dynamic_properties(browser):
+    """
+    Динамически появялющиеся элементы (кнопки)
+    URL = https://demoqa.com/dynamic-properties
+    """
     page = DynamicProperties(browser)
     page.push_dynamic_buttons()
-
-    time.sleep(3)
 
 # Раздел "Forms"
 def test_filling_forms_practice_form_and_validation_data(browser):
@@ -105,6 +117,21 @@ def test_filling_forms_practice_form_and_validation_data(browser):
     page.data_validation()
 
 # Раздел "Alerts, Frame & Windows"
+def test_browser_windows(browser):
+    """
+    Работа с табами и новыми окнами. Открываем, выводим текст...
+    URL: https://demoqa.com/browser-windows
+    """
+    page = BrowserWindows(browser)
+    page.open_new_tabs_and_windows()
+
+def test_alerts(browser):
+    """
+    Работа с окнами Alerts
+    URL: https://demoqa.com/alerts
+    """
+    page = Alerts(browser)
+    page.click_alerts_button()
 
 # Черновик
 def test_temp():
@@ -113,24 +140,90 @@ def test_temp():
 
     from selenium import webdriver
     from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.wait import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
 
     # Замените путь к драйверу на путь к вашему драйверу
     driver = webdriver.Chrome()
-    driver.get("https://demoqa.com/upload-download")
+    # Открываем страницу demoqa.com/browser-windows
+    driver.get("https://demoqa.com/browser-windows")
 
-    # Находим кнопку для загрузки файла и загружаем файл
-    upload_button = driver.find_element(By.CSS_SELECTOR, "#uploadFile")
+    # Находим кнопку для открытия окна
+    wait = WebDriverWait(driver, 10)
+    button = driver.find_element(By.CSS_SELECTOR, "button#messageWindowButton")
+    button.click()
 
-    current_dir = os.getcwd()  # Получаем текущий рабочий каталог
-    file_path = os.path.join(current_dir, "resources", "1518.jpg")
+    # # Переключаемся на новое окно
+    # wait.until(EC.number_of_windows_to_be(2))
+    #
+    # new_window = driver.window_handles[1]
+    # driver.switch_to.window(new_window)
+    #
+    # # # Получаем текст из открывшегося окна
+    # # text = driver.find_element(By.CSS_SELECTOR, "body").text
+    # # print(text)
+    # # Получаем текст из элемента "body" с помощью JavaScript
+    # body_element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "body")))
+    # text = driver.execute_script("return arguments[0].innerText;", body_element)
+    # print(text)
+    #
+    # # Закрываем окно
+    # driver.close()
+    #
+    # # Переключаемся обратно на основное окно
+    # driver.switch_to.window(driver.window_handles[0])
+    #
+    # # Закрываем браузер
+    # driver.quit()
 
-    upload_button.send_keys(file_path)
+    # Переключаемся на новое окно
+    wait.until(EC.number_of_windows_to_be(2))
+    new_window = driver.window_handles[1]
+    driver.switch_to.window(new_window)
 
-    # Подождем некоторое время после загрузки файла
-    time.sleep(5)
+    # Дожидаемся появления элемента iframe в новом окне
+    iframe_element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "iframe")))
 
-    # Закрываем браузер
+    # Переключаемся в iframe
+    driver.switch_to.frame(iframe_element)
+
+    # Дожидаемся появления текста внутри iframe
+    text_element = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "p")))
+
+    # Получаем текст из элемента внутри iframe
+    text = text_element.text
+    print(text)
+
+    # Переключаемся обратно из iframe
+    driver.switch_to.default_content()
+
+    # Закрываем окно и браузер
+    driver.close()
+    driver.switch_to.window(driver.window_handles[0])
     driver.quit()
+
+
+
+
+
+
+    # # Переключаемся на iframe, если текст находится внутри него
+    # iframe = driver.find_element(By.CSS_SELECTOR, "iframe")
+    # driver.switch_to.frame(iframe)
+    #
+    # # Получаем текст из информационного окна
+    # info_text = driver.find_element(By.ID, "sampleHeading").text
+    # print(info_text)
+    #
+    # # Переключаемся обратно на основную страницу
+    # driver.switch_to.default_content()
+    #
+    # # Закрываем информационное окно
+    # close_button = driver.find_element(By.CSS_SELECTOR, "button#closeSmallModal")
+    # close_button.click()
+    #
+    # # Закрываем браузер
+    # driver.quit()
 
 
 
