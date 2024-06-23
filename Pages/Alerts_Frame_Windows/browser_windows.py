@@ -45,7 +45,8 @@ class BrowserWindows(Methods):
         wait.until(EC.number_of_windows_to_be(2))
         self.browser.switch_to.window(self.browser.window_handles[1])
 
-        # информационное окно открывается, мы на него переключаемся, закрываем.. но достать оттуда текст пока не получается. Я не знаю как
+        # информационное окно открывается, мы на него переключаемся, закрываем.. но достать оттуда текст пока
+        # не получается. Я не знаю как. LOCATOR_NEW_WINDOW_MESSAGE_TEXT = (By.CSS_SELECTOR, "body")
         # print(f"Текст на странице информационного окна: {self.find_element(BrowserWindowsLocators.LOCATOR_NEW_WINDOW_MESSAGE_TEXT).text}")
 
         self.browser.close()  # закрываем новый таб

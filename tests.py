@@ -159,6 +159,10 @@ def test_modal_dialogs(browser):
     page = ModalDialogs(browser)
     page.modal_dialog_windows()
 
+# Раздел Widgets
+def test_accordian(browser):
+    pass
+
 
 # Черновик
 def test_temp():

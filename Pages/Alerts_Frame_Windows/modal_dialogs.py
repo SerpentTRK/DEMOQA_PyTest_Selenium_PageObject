@@ -1,9 +1,6 @@
-import os
+
 import time
 
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from Data_for_tests.Alerts_Frame_Windows.modal_dialogs_testdata import Url, ModalDialogsLocators, ModalDialogsTestdata
 from Methods.methods import Methods
