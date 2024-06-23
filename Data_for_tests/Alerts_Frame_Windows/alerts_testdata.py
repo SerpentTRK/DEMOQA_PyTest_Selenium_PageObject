@@ -13,9 +13,14 @@ class AlertsLocators:
     LOCATOR_ALERT_CONFIRM = (By.CSS_SELECTOR, "button#confirmButton")
     LOCATOR_ALERT_PROMPT = (By.CSS_SELECTOR, "button#promtButton")
 
+    LOCATOR_ALERT_CONFIRM_VALIDATION = (By.CSS_SELECTOR, "span#confirmResult")
+    LOCATOR_ALERT_PROMPT_VALIDATION = (By.CSS_SELECTOR, "span#promptResult")
+
 
 
 class AlertsTestdata:
     """
     Класс содержит тестовые данные для конкретной тестируемой страницы
     """
+    ALERT_CONFIRM_TEXT = "You selected Ok"
+    ALERT_PROMPT_TEXT = "You entered Вальдемар"

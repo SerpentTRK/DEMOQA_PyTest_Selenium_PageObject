@@ -127,7 +127,8 @@ def test_browser_windows(browser):
 
 def test_alerts(browser):
     """
-    Работа с окнами Alerts
+    Работа с окнами Alerts. Сообщение из первых двух Alert выводится на print.
+    Результаты Confirm и Prompt передаем на assert
     URL: https://demoqa.com/alerts
     """
     page = Alerts(browser)
