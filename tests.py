@@ -1,10 +1,10 @@
 
 import time
 
-from selenium.webdriver.support import wait
-
+from Pages.Alerts_Frame_Windows.frames import Frames
 from Pages.Alerts_Frame_Windows.alerts import Alerts
 from Pages.Alerts_Frame_Windows.browser_windows import BrowserWindows
+from Pages.Alerts_Frame_Windows.nested_frames import NestedFrames
 
 from Pages.Form.practice_form import PracticeFormMethods
 
@@ -133,6 +133,22 @@ def test_alerts(browser):
     """
     page = Alerts(browser)
     page.click_alerts_button()
+
+def test_frames(browser):
+    """
+    Работа с Frames. Находим, переключаемся, выводим содержимое
+    URL: https://demoqa.com/frames
+    """
+    page = Frames(browser)
+    page.iframe_action()
+
+def test_nested_frames(browser):
+    """
+    Работа с Frames и вложенным в него фреймом. Находим, переключаемся, выводим содержимое
+    URL: https://demoqa.com/nestedframes
+    """
+    page = NestedFrames(browser)
+    page.nested_iframe_action()
 
 # Черновик
 def test_temp():
