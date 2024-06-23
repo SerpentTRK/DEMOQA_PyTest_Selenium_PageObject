@@ -18,7 +18,7 @@ from Pages.Elenents.web_tables import ElementsWebTables
 from Pages.Elenents.radio_button import ElementsRadioButton
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.text_box import ElementsTextBox
-
+from Pages.Widgets.accordian import Accordian
 
 
 # Раздел "Elements"
@@ -161,8 +161,12 @@ def test_modal_dialogs(browser):
 
 # Раздел Widgets
 def test_accordian(browser):
-    pass
-
+    """
+    Работа с меню типа Accordian
+    URL: https://demoqa.com/accordian
+    """
+    page = Accordian(browser)
+    page.accordian_menu()
 
 # Черновик
 def test_temp():
