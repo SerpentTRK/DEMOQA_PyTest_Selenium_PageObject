@@ -4,6 +4,7 @@ import time
 from Pages.Alerts_Frame_Windows.frames import Frames
 from Pages.Alerts_Frame_Windows.alerts import Alerts
 from Pages.Alerts_Frame_Windows.browser_windows import BrowserWindows
+from Pages.Alerts_Frame_Windows.modal_dialogs import ModalDialogs
 from Pages.Alerts_Frame_Windows.nested_frames import NestedFrames
 
 from Pages.Form.practice_form import PracticeFormMethods
@@ -149,6 +150,15 @@ def test_nested_frames(browser):
     """
     page = NestedFrames(browser)
     page.nested_iframe_action()
+
+def test_modal_dialogs(browser):
+    """
+    Работа с Модальными диалоговыми окнами. Находим, переключаемся, выводим содержимое
+    URL: https://demoqa.com/modal-dialogs
+    """
+    page = ModalDialogs(browser)
+    page.modal_dialog_windows()
+
 
 # Черновик
 def test_temp():
