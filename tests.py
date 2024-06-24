@@ -18,7 +18,9 @@ from Pages.Elenents.web_tables import ElementsWebTables
 from Pages.Elenents.radio_button import ElementsRadioButton
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.text_box import ElementsTextBox
+
 from Pages.Widgets.accordian import Accordian
+from Pages.Widgets.auto_complete import AutoComplete
 
 
 # Раздел "Elements"
@@ -167,6 +169,17 @@ def test_accordian(browser):
     """
     page = Accordian(browser)
     page.accordian_menu()
+
+def test_auto_complete(browser):
+    """
+    Работа с меню типа Auto Complete. Вводи данных с последующей валидацией
+    URL: https://demoqa.com/auto-complete
+    """
+    page = AutoComplete(browser)
+    page.auto_complete_menu()
+    page.data_validation()
+
+    time.sleep(3)
 
 # Черновик
 def test_temp():
