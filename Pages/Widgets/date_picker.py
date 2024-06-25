@@ -49,8 +49,11 @@ class DatePicker(Methods):
 
     def data_validation(self):
         entered_date = self.find_element(DatePickerLocators.LOCATOR_SELECT_DATA).get_attribute("value")
+        entered_date_and_time = self.find_element(DatePickerLocators.LOCATOR_SELECT_DATA_AND_TIME).get_attribute("value")
 
         assert entered_date == DatePickerTestdata.DATA_FULL_DATA, \
             f"Ошибка: {entered_date} не совпадает {DatePickerTestdata.DATA_FULL_DATA}"
+        assert entered_date_and_time == DatePickerTestdata.DATA_FULL_DATA_AND_TIME, \
+            f"Ошибка: {entered_date_and_time} не совпадает {DatePickerTestdata.DATA_FULL_DATA_AND_TIME}"
 
 
