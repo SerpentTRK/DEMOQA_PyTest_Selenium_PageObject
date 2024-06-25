@@ -189,20 +189,33 @@ def test_date_picker(browser):
     page.fill_data_picker()
     page.data_validation()
 
-
 # Черновик
 def test_temp():
     from selenium import webdriver
-    from selenium.webdriver.support.ui import Select
     from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.select import Select
+    from selenium.webdriver.common.keys import Keys
     import time
 
     driver = webdriver.Chrome()
     driver.get("https://demoqa.com/date-picker")
 
     # Найти элемент для выбора даты
-    date_picker_input = driver.find_element(By.ID, "datePickerMonthYearInput").click()
+    date_picker_input = driver.find_element(By.ID, "datePickerMonthYearInput")
+    date_picker_input.click()
+
+    # Найти элемент выбора года
+    year_select = driver.find_element(By.CSS_SELECTOR, ".react-datepicker__year-select")
+    year_select.click()
+
+    # Опустить список годов до 2015
+    for i in range(15):  # опустить список годов 85 раз, чтобы увидеть 2015
+        year_select.send_keys(Keys.ARROW_UP)
+
     # Выбрать год, месяц и день
+    selected_year = driver.find_element(By.CSS_SELECTOR, ".react-datepicker__year-select").text
+    print("Selected Year:", selected_year)
+
     Select(driver.find_element(By.CSS_SELECTOR, ".react-datepicker__year-select")).select_by_visible_text("2015")
     Select(driver.find_element(By.CSS_SELECTOR, ".react-datepicker__month-select")).select_by_visible_text("April")
     driver.find_element(By.CSS_SELECTOR, ".react-datepicker__day--021").click()
