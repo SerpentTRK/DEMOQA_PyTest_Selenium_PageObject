@@ -22,6 +22,7 @@ from Pages.Elenents.text_box import ElementsTextBox
 from Pages.Widgets.accordian import Accordian
 from Pages.Widgets.auto_complete import AutoComplete
 from Pages.Widgets.date_picker import DatePicker
+from Pages.Widgets.progress_bar import ProgressBar
 from Pages.Widgets.slider import Slider
 
 
@@ -200,7 +201,13 @@ def test_slider(browser):
     page.data_validation()
 
 def test_progress_bar(browser):
-    page.ProgressBar(browser)
+    """
+    Работа с Progress Bar
+    URL: https://demoqa.com/progress-bar
+    """
+    page = ProgressBar(browser)
+    page.start_and_stop()
+
 
 
 # Черновик
@@ -211,31 +218,23 @@ def test_temp():
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.common.action_chains import ActionChains
 
-    # Open the browser and go to the website
+    # Открываем браузер и переходим на страницу с прогресс-баром
     driver = webdriver.Chrome()
-    driver.get("https://demoqa.com/slider")
+    driver.get("https://demoqa.com/progress-bar")
 
-    # Locate the slider element
-    slider = driver.find_element(By.CSS_SELECTOR, ".range-slider__wrap")
+    # Находим элемент прогресс-бара
+    driver.find_element(By.CSS_SELECTOR, "button#startStopButton").click()
 
-    # Get the width of the slider in pixels
-    slider_width = slider.size['width']
+    # Ожидаем, пока прогресс достигнет 70%
+    while True:
+        progress_value = driver.find_element(By.CLASS_NAME, "progress-bar").get_attribute("aria-valuenow")
+        if int(progress_value) >= 70:
+            break
+        # time.sleep(0.5)  # Пауза в 0.5 секунды
 
-    # Calculate the number of pixels to move for 1%
-    pixels_for_1_percent = slider_width / 100
+    print("Прогресс достиг 70%")
 
-    # Calculate the number of pixels to move for 25%
-    pixels_for_25_percent = pixels_for_1_percent * 25
-
-    # Move the slider to 1%
-    action = ActionChains(driver)
-    action.click_and_hold(slider).move_by_offset(-pixels_for_1_percent, 0).release().perform()
-
-    # Move the slider to 25%
-    action = ActionChains(driver)
-    action.click_and_hold(slider).move_by_offset(-pixels_for_25_percent, 0).release().perform()
-
-    # Close the browser
+    # Закрываем браузер
     driver.quit()
 
 

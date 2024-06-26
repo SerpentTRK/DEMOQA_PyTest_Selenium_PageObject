@@ -2,18 +2,19 @@ import os
 
 from selenium.webdriver.common.by import By
 
-Url = "https://demoqa.com/slider"
+Url = "https://demoqa.com/progress-bar"
 
-class SliderLocators:
+class ProgressBarLocators:
     """
     Класс содержит локаторы для конкретной тестируемой страницы
     """
-    LOCATOR_SLIDER = (By.CSS_SELECTOR, ".range-slider__wrap")
-    LOCATOR_SLIDER_VALUE_BOX = (By.CSS_SELECTOR, "#sliderValue")
-    LOCATOR_SLIDER_VALUE_HOVER = (By.CSS_SELECTOR, ".range-slider__tooltip__label")
+    LOCATOR_START_AND_STOP_BUTTON = (By.CSS_SELECTOR, "button#startStopButton")
+    LOCATOR_FILLING_PROGRESS_BAR = (By.CLASS_NAME, "progress-bar")
+    LOCATOR_RESET_BUTTON = (By.CSS_SELECTOR, "#resetButton")
 
-class SliderTestdata:
+class ProgressBarTestdata:
     """
     Класс содержит тестовые данные для конкретной тестируемой страницы
     """
-    DATA_SLIDER_POSITION = "25"
+    DATA_FOR_PRESS_STOP_BUTTON_75 = "75"
+    DATA_FOR_PRESS_STOP_BUTTON_100 = "100"
