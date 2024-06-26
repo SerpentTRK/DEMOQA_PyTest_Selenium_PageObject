@@ -24,6 +24,8 @@ from Pages.Widgets.auto_complete import AutoComplete
 from Pages.Widgets.date_picker import DatePicker
 from Pages.Widgets.progress_bar import ProgressBar
 from Pages.Widgets.slider import Slider
+from Pages.Widgets.tabs import Tab
+from Pages.Widgets.tool_tips import ToolTips
 
 
 # Раздел "Elements"
@@ -202,11 +204,28 @@ def test_slider(browser):
 
 def test_progress_bar(browser):
     """
-    Работа с Progress Bar
+    Работа с Progress Bar. Запуск, остановка, доведение до 100%. Сброс до 0
     URL: https://demoqa.com/progress-bar
     """
     page = ProgressBar(browser)
     page.start_and_stop()
+
+def test_tabs(browser):
+    """
+    Работа с Tab-ами. Открываем, переключаемся
+    URL: https://demoqa.com/tabs
+    """
+    page = Tab(browser)
+    page.use_tabs()
+
+def test_tool_tip(browser):
+    """
+    Работа с Tool Tips. Читаем и валидируем
+    URL: https://demoqa.com/tool-tips
+    """
+    page = ToolTips(browser)
+    page.reading_tool_tip_messages()
+
 
 
 
@@ -217,22 +236,30 @@ def test_temp():
     from selenium.webdriver.support.select import Select
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.common.action_chains import ActionChains
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
 
-    # Открываем браузер и переходим на страницу с прогресс-баром
+    # Инициализация драйвера
     driver = webdriver.Chrome()
-    driver.get("https://demoqa.com/progress-bar")
+    driver.get("https://demoqa.com/tool-tips")
 
-    # Находим элемент прогресс-бара
-    driver.find_element(By.CSS_SELECTOR, "button#startStopButton").click()
+    # Находим элемент кнопки
+    button = driver.find_element(By.ID, "toolTipButton")
 
-    # Ожидаем, пока прогресс достигнет 70%
-    while True:
-        progress_value = driver.find_element(By.CLASS_NAME, "progress-bar").get_attribute("aria-valuenow")
-        if int(progress_value) >= 70:
-            break
-        # time.sleep(0.5)  # Пауза в 0.5 секунды
+    # Выполняем ховер на кнопку
+    ActionChains(driver).move_to_element(button).perform()
+    time.sleep(3)
 
-    print("Прогресс достиг 70%")
+    # # Находим элемент всплывающей подсказки и получаем текст
+    # tooltip_element = driver.find_element(By.CLASS_NAME, "tooltiptext")
+    # tooltip_text = tooltip_element.text
+
+    # Ждем появления всплывающей подсказки
+    tooltip = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "buttonToolTip")))
+
+    # Получаем текст всплывающей подсказки
+    tooltip_text = tooltip.text
+    print(tooltip_text)
 
     # Закрываем браузер
     driver.quit()

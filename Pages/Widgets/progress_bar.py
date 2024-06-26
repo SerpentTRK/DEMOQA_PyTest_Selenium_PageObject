@@ -31,8 +31,7 @@ class ProgressBar(Methods):
                 break
 
         print(self.find_element(ProgressBarLocators.LOCATOR_FILLING_PROGRESS_BAR).get_attribute("aria-valuenow"))
-        time.sleep(3)
 
         self.find_element(ProgressBarLocators.LOCATOR_RESET_BUTTON).click()
-
-        time.sleep(1)
+        print(self.find_element(ProgressBarLocators.LOCATOR_FILLING_PROGRESS_BAR).get_attribute("aria-valuenow"))
+        time.sleep(2)
