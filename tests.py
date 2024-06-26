@@ -192,11 +192,16 @@ def test_date_picker(browser):
 
 def test_slider(browser):
     """
-    Работа со Slider. Смещаем на заданную величину
+    Работа со Slider. Смещаем на заданную величину, валидируем положение слайдера
     URL: https://demoqa.com/slider
     """
     page = Slider(browser)
-    page.start_and_stop_slider()
+    page.move_slider()
+    page.data_validation()
+
+def test_progress_bar(browser):
+    page.ProgressBar(browser)
+
 
 # Черновик
 def test_temp():
