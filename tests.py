@@ -22,6 +22,7 @@ from Pages.Elenents.text_box import ElementsTextBox
 from Pages.Widgets.accordian import Accordian
 from Pages.Widgets.auto_complete import AutoComplete
 from Pages.Widgets.date_picker import DatePicker
+from Pages.Widgets.slider import Slider
 
 
 # Раздел "Elements"
@@ -189,51 +190,48 @@ def test_date_picker(browser):
     page.fill_data_picker()
     page.data_validation()
 
+def test_slider(browser):
+    """
+    Работа со Slider. Смещаем на заданную величину
+    URL: https://demoqa.com/slider
+    """
+    page = Slider(browser)
+    page.start_and_stop_slider()
+
 # Черновик
 def test_temp():
     from selenium import webdriver
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.select import Select
     from selenium.webdriver.common.keys import Keys
-    import time
+    from selenium.webdriver.common.action_chains import ActionChains
 
+    # Open the browser and go to the website
     driver = webdriver.Chrome()
-    driver.get("https://demoqa.com/date-picker")
+    driver.get("https://demoqa.com/slider")
 
-    # Найти элемент для выбора даты
-    date_picker_input = driver.find_element(By.ID, "datePickerMonthYearInput")
-    date_picker_input.click()
+    # Locate the slider element
+    slider = driver.find_element(By.CSS_SELECTOR, ".range-slider__wrap")
 
-    # Найти элемент выбора года
-    year_select = driver.find_element(By.CSS_SELECTOR, ".react-datepicker__year-select")
-    year_select.click()
+    # Get the width of the slider in pixels
+    slider_width = slider.size['width']
 
-    # Опустить список годов до 2015
-    for i in range(15):  # опустить список годов 85 раз, чтобы увидеть 2015
-        year_select.send_keys(Keys.ARROW_UP)
+    # Calculate the number of pixels to move for 1%
+    pixels_for_1_percent = slider_width / 100
 
-    # Выбрать год, месяц и день
-    selected_year = driver.find_element(By.CSS_SELECTOR, ".react-datepicker__year-select").text
-    print("Selected Year:", selected_year)
+    # Calculate the number of pixels to move for 25%
+    pixels_for_25_percent = pixels_for_1_percent * 25
 
-    Select(driver.find_element(By.CSS_SELECTOR, ".react-datepicker__year-select")).select_by_visible_text("2015")
-    Select(driver.find_element(By.CSS_SELECTOR, ".react-datepicker__month-select")).select_by_visible_text("April")
-    driver.find_element(By.CSS_SELECTOR, ".react-datepicker__day--021").click()
+    # Move the slider to 1%
+    action = ActionChains(driver)
+    action.click_and_hold(slider).move_by_offset(-pixels_for_1_percent, 0).release().perform()
 
-    # Получить введенную дату
-    entered_date = date_picker_input.get_attribute("value")
-    print("Entered Date:", entered_date)
+    # Move the slider to 25%
+    action = ActionChains(driver)
+    action.click_and_hold(slider).move_by_offset(-pixels_for_25_percent, 0).release().perform()
 
-    # Проверить сохраненную дату
-    expected_date = "04/21/2015"
-    if entered_date == expected_date:
-        print("Date validation successful")
-    else:
-        print("Date validation failed")
-
-    time.sleep(5)
+    # Close the browser
     driver.quit()
-
 
 
 
