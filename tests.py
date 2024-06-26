@@ -224,7 +224,7 @@ def test_tool_tip(browser):
     URL: https://demoqa.com/tool-tips
     """
     page = ToolTips(browser)
-    page.reading_tool_tip_messages()
+    page.reading_and_validation_tool_tip_messages()
 
 
 
