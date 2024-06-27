@@ -30,6 +30,18 @@ class Methods():
         """
         self.browser.execute_script(f"window.scrollBy(0,{pixels})")
 
+    def change_window_size(self, x, y):
+        """
+        Метод для изменения размера экрана. Чтоьбы избежать перекрытия элементов полезно увеличить размер браузера
+        """
+        self.browser.set_window_size(x, y)
+
+    def script_for_using_closed_element(self, closed_element):
+        """
+        Если элемент перекрыт другим элементом, то мы можем взаимодействовать с ним используя ява-скрипт
+        """
+        self.browser.execute_script("arguments[0].click();", closed_element)
+
     def find_element(self, locator, time=10):
         # return WebDriverWait(self.browser, time).until(EC.presence_of_element_located(locator))
         try:

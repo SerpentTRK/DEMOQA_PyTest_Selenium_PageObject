@@ -25,6 +25,7 @@ from Pages.Widgets.date_picker import DatePicker
 from Pages.Widgets.progress_bar import ProgressBar
 from Pages.Widgets.slider import Slider
 from Pages.Widgets.tabs import Tab
+from Pages.Widgets.menu import Menu
 from Pages.Widgets.tool_tips import ToolTips
 
 
@@ -225,6 +226,14 @@ def test_tool_tip(browser):
     """
     page = ToolTips(browser)
     page.reading_and_validation_tool_tip_messages()
+
+def test_menu(browser):
+    """
+    Работа с Menu. Идем по порядку по всем элементам меню, читаем все заголовки
+    URL: https://demoqa.com/menu
+    """
+    page = Menu(browser)
+    page.check_full_menu()
 
 
 
