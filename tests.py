@@ -23,6 +23,7 @@ from Pages.Widgets.accordian import Accordian
 from Pages.Widgets.auto_complete import AutoComplete
 from Pages.Widgets.date_picker import DatePicker
 from Pages.Widgets.progress_bar import ProgressBar
+from Pages.Widgets.select_menu import SelectMenu
 from Pages.Widgets.slider import Slider
 from Pages.Widgets.tabs import Tab
 from Pages.Widgets.menu import Menu
@@ -234,6 +235,15 @@ def test_menu(browser):
     """
     page = Menu(browser)
     page.check_full_menu()
+
+def test_select_menu(browser):
+    """
+    Работа с размными виджетами в Menu. Последовательно используем каждый из них. Выбираем и валидируем данные
+    URL: https://demoqa.com/select-menu
+    """
+    page = SelectMenu(browser)
+    page.choice_and_validation_menu_elements()
+
 
 
 
