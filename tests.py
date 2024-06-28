@@ -1,14 +1,6 @@
 
 import time
 
-from Pages.Alerts_Frame_Windows.frames import Frames
-from Pages.Alerts_Frame_Windows.alerts import Alerts
-from Pages.Alerts_Frame_Windows.browser_windows import BrowserWindows
-from Pages.Alerts_Frame_Windows.modal_dialogs import ModalDialogs
-from Pages.Alerts_Frame_Windows.nested_frames import NestedFrames
-
-from Pages.Form.practice_form import PracticeFormMethods
-
 from Pages.Elenents.dynamic_properties import DynamicProperties
 from Pages.Elenents.upload_and_download import UploadAndDownload
 from Pages.Elenents.broken_links_and_images import BrokenLinksImages
@@ -19,6 +11,14 @@ from Pages.Elenents.radio_button import ElementsRadioButton
 from Pages.Elenents.check_box import ElementsCheckBox
 from Pages.Elenents.text_box import ElementsTextBox
 
+from Pages.Form.practice_form import PracticeFormMethods
+
+from Pages.Alerts_Frame_Windows.frames import Frames
+from Pages.Alerts_Frame_Windows.alerts import Alerts
+from Pages.Alerts_Frame_Windows.browser_windows import BrowserWindows
+from Pages.Alerts_Frame_Windows.modal_dialogs import ModalDialogs
+from Pages.Alerts_Frame_Windows.nested_frames import NestedFrames
+
 from Pages.Widgets.accordian import Accordian
 from Pages.Widgets.auto_complete import AutoComplete
 from Pages.Widgets.date_picker import DatePicker
@@ -28,6 +28,8 @@ from Pages.Widgets.slider import Slider
 from Pages.Widgets.tabs import Tab
 from Pages.Widgets.menu import Menu
 from Pages.Widgets.tool_tips import ToolTips
+
+from Pages.Interactions.sortable import Sortable
 
 
 # Раздел "Elements"
@@ -244,6 +246,14 @@ def test_select_menu(browser):
     page = SelectMenu(browser)
     page.choice_and_validation_menu_elements()
 
+# Раздел Interactions
+def test_sortable(browser):
+    """
+    Работа с разделом Sortable. Выбираем, перетаскиваем и валидируем новое положение
+    URL: https://demoqa.com/sortable
+    """
+    page = Sortable(browser)
+    page.choice_replace_and_validation()
 
 
 
