@@ -30,6 +30,7 @@ from Pages.Widgets.menu import Menu
 from Pages.Widgets.tool_tips import ToolTips
 
 from Pages.Interactions.sortable import Sortable
+from Pages.Interactions.selectable import Selectable
 
 
 # Раздел "Elements"
@@ -255,7 +256,19 @@ def test_sortable(browser):
     page = Sortable(browser)
     page.choice_replace_and_validation()
 
+def test_selectable(browser):
+    """
+    Работа с разделом Selectable. Отмечаем элементны интерфейса, и проверяем фиксацию выбора
+    Tут понятно, что кликнешь по другому элементу, он так же отметится, и так же изменится локатор.
+    Чтобы отключить - кликаем по измененному локатору. Не стал плодить одинаковый код. Кликаем на одном и его проверяем
 
+    В боевых усовиях, ВОЗМОЖНО, сперва надо все проверить значения по-умолчанию.
+    Может что-то должно быть отмечено изначально...
+
+    URL: https://demoqa.com/selectable
+    """
+    page = Selectable(browser)
+    page.choice_and_check()
 
 
 # Черновик
