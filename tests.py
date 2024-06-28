@@ -31,6 +31,7 @@ from Pages.Widgets.tool_tips import ToolTips
 
 from Pages.Interactions.sortable import Sortable
 from Pages.Interactions.selectable import Selectable
+from Pages.Interactions.resizable import Resizable
 
 
 # Раздел "Elements"
@@ -269,6 +270,14 @@ def test_selectable(browser):
     """
     page = Selectable(browser)
     page.choice_and_check()
+
+def test_resizable(browser):
+    """
+    Работа с разделом Sortable. Выбираем, перетаскиваем и валидируем новое положение
+    URL: Resizable
+    """
+    page = Resizable(browser)
+    page.change_size_of_element()
 
 
 # Черновик
