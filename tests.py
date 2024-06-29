@@ -291,10 +291,11 @@ def test_droppable(browser):
 
 def test_dragabble(browser):
     """
-    Работа с разделом Dragabble.
+    Работа с разделом Dragabble. Тут скорее просто ознакомительный момент, что и где можно перетаскивать
     URL: https://demoqa.com/dragabble
     """
     page = Dragabble(browser)
+    page.lock_and_drop_elements()
 
 # Черновик
 def test_temp():
