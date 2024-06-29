@@ -32,6 +32,8 @@ from Pages.Widgets.tool_tips import ToolTips
 from Pages.Interactions.sortable import Sortable
 from Pages.Interactions.selectable import Selectable
 from Pages.Interactions.resizable import Resizable
+from Pages.Interactions.droppable import Droppable
+from Pages.Interactions.dragabble import Dragabble
 
 
 # Раздел "Elements"
@@ -274,11 +276,25 @@ def test_selectable(browser):
 def test_resizable(browser):
     """
     Работа с разделом Sortable. Выбираем, перетаскиваем и валидируем новое положение
-    URL: Resizable
+    URL: https://demoqa.com/resizable
     """
     page = Resizable(browser)
     page.change_size_of_element()
 
+def test_droppable(browser):
+    """
+    Работа с разделом Droppable. Хватаем, перетаскиваем, валидируем изменения.
+    URL: https://demoqa.com/droppable
+    """
+    page = Droppable(browser)
+    page.lock_and_drag_elements()
+
+def test_dragabble(browser):
+    """
+    Работа с разделом Dragabble.
+    URL: https://demoqa.com/dragabble
+    """
+    page = Dragabble(browser)
 
 # Черновик
 def test_temp():
