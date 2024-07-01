@@ -35,6 +35,8 @@ from Pages.Interactions.resizable import Resizable
 from Pages.Interactions.droppable import Droppable
 from Pages.Interactions.dragabble import Dragabble
 
+from Pages.Book_Store_Application.login import Login
+
 
 # Раздел "Elements"
 def test_filling_elements_text_box(browser):
@@ -296,6 +298,17 @@ def test_dragabble(browser):
     """
     page = Dragabble(browser)
     page.lock_and_drop_elements()
+
+# Раздел Book Store Application  book_store_application
+def test_login(browser):
+    """
+    Интерфейс для авторизации и/или регистрации нового пользователя.
+    URL: https://demoqa.com/login
+    """
+    page = Login(browser)
+    page.use_login_page()
+
+    time.sleep(3)
 
 # Черновик
 def test_temp():

@@ -8,6 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 
+from twocaptcha import TwoCaptcha
+
 
 class Methods():
     """
@@ -17,6 +19,9 @@ class Methods():
         self.browser = driver
         self.url = url
         self.browser.get(self.url)
+
+    def captcha_solution(self):
+        solver = TwoCaptcha("20459d860ea339a92a31918f1b2f8c42")
 
     def go_to_site(self):
         """
